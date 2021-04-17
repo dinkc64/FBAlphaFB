@@ -301,6 +301,10 @@ ASFLAGS	=  -O1 -f coff -w-orphan-labels
 
 	DEF	:= -DBUILD_WIN32 -DUSE_SPEEDHACKS -DFILENAME=$(NAME) -DMMX=$(MMX)
 
+ifndef RELEASEBUILD
+	DEF	:= $(DEF) -DVER_ALPHA=\"$(shell git log --oneline $(shell git describe --tags --abbrev=0).. | wc -l || echo 0)\"
+endif
+
 ifdef UNICODE
 	DEF	:= $(DEF) -D_UNICODE
 endif
