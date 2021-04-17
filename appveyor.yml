@@ -13,8 +13,7 @@ environment:
       build_type: fbn-xp-gcc
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       build_type: fbn-xp-debug-gcc
-shallow_clone: true
-clone_depth: 1
+shallow_clone: false
 install:
   - if "%build_type%"=="fbn-xp-gcc" set "PATH=C:\DXSDK;C:\MinGW\bin;C:\Windows\System32;C:\Windows;%PATH%"
   - if "%build_type%"=="fbn-xp-debug-gcc" set "PATH=C:\DXSDK;C:\MinGW\bin;C:\Windows\System32;C:\Windows;%PATH%"
