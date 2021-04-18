@@ -301,6 +301,12 @@ ASFLAGS	=  -O1 -f coff -w-orphan-labels
 
 	DEF	:= -DBUILD_WIN32 -DUSE_SPEEDHACKS -DFILENAME=$(NAME) -DMMX=$(MMX)
 
+# Get last commit date if available
+DEF	:= $(DEF) -DGIT_DATE=\"$(shell git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m/%d_%H:%M:%S || echo unknown)\"
+
+# Get last commit hash if available
+DEF	:= $(DEF) -DGIT_HASH=\"$(shell git rev-parse --short HEAD || echo unknown)\"
+
 ifdef UNICODE
 	DEF	:= $(DEF) -D_UNICODE
 endif
